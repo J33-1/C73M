@@ -1,6 +1,14 @@
 const readline = require("readline");
 
-const botName = "C73M"; // Store bot name in a variable
+const botName = "C73M"; // Bot name
+
+// Separate object for commands and responses
+const commands = {
+  hello: "Hi there! How can I assist you?",
+  time: "The current time is " + new Date().toLocaleTimeString(),
+  bye: "Goodbye! Have a great day.",
+  help: "Available commands: hello, time, bye, help"
+};
 
 // Create an interface for user input
 const rl = readline.createInterface({
@@ -10,13 +18,9 @@ const rl = readline.createInterface({
 
 // Function to handle commands
 function handleCommand(command) {
-  if (command === "/run") {
-    console.log(${botName}: Hi there!, C73M is now running.);
-  } else if (command === "time") {
-    console.log(`${botName}: The current time is ` + new Date().toLocaleTimeString());
-  } else if (command === "bye") {
-    console.log(${botName}: Goodbye! Have a great day.);
-    rl.close(); // Stop the bot
+  if (commands[command]) {
+    console.log(${botName}: ${commands[command]});
+    if (command === "bye") rl.close(); // Stop the bot on "bye"
   } else {
     console.log(${botName}: Sorry, I don't understand that command.);
   }
